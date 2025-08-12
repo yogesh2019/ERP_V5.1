@@ -1,0 +1,6 @@
+﻿MiniERP/
+├── MiniERP.API/
+├── MiniERP.Application/
+├── MiniERP.Domain/
+├── MiniERP.Infrastructure/
+└── MiniERP.sln
