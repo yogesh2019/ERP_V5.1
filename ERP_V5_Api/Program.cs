@@ -12,7 +12,8 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddMediatR(cfg =>
 {
-    cfg.RegisterServicesFromAssemblyContaining<RegisterUserCommand>(); // points to Application layer
+    cfg.RegisterServicesFromAssemblyContaining<RegisterUserCommand>();        // Application
+    cfg.RegisterServicesFromAssemblyContaining<RegisterUserCommandHandler>(); // Infrastructure
 });
 
 // Application (MediatR etc.) will be added in Step 2
