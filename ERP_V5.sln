@@ -13,6 +13,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ERP_V5_Infrastructure", "ER
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{8BAA9095-4097-4C26-B736-BE208116B672}"
 	ProjectSection(SolutionItems) = preProject
+		ERP_HLD.txt = ERP_HLD.txt
 		Folders.txt = Folders.txt
 	EndProjectSection
 EndProject

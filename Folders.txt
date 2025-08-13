@@ -1,6 +1,6 @@
-﻿MiniERP/
-├── MiniERP.API/
-├── MiniERP.Application/
-├── MiniERP.Domain/
-├── MiniERP.Infrastructure/
-└── MiniERP.sln
+﻿ERP_V5/
+├── ERP_V5_API/
+├── ERP_V5_Application/
+├── ERP_V5_Domain/
+├── ERP_V5_Infrastructure/
+└── ERP_V5.sln
