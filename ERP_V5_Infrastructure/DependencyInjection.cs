@@ -1,4 +1,7 @@
 ﻿using System;
+using ERP_V5.Application.Authentication;
+using ERP_V5_Application.Common.Interfaces;
+using ERP_V5_Infrastructure.Authentication;
 using ERP_V5_Infrastructure.Identity;
 using ERP_V5_Infrastructure.Persistence;
 using Microsoft.AspNetCore.Identity;
@@ -14,10 +17,7 @@ public static class DependencyInjection
     {
         var connectionString = config.GetConnectionString("DefaultConnection")
             ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
-
-        services.AddDbContext<AppDbContext>(options =>
-            options.UseSqlServer(connectionString));
-
+        services.AddSingleton<TimeProvider>(TimeProvider.System);
         services
             .AddIdentityCore<ApplicationUser>(options =>
             {
@@ -32,6 +32,13 @@ public static class DependencyInjection
             .AddRoles<ApplicationRole>()
             .AddEntityFrameworkStores<AppDbContext>()
             .AddSignInManager();
+        services.Configure<JwtSettings>(config.GetSection("Jwt"));
+        services.AddScoped<IJwtTokenGenerator, JwtTokenGenerator>();
+        services.AddDbContext<AppDbContext>(options =>
+            options.UseSqlServer(connectionString));
+
+        // ✅ Add this line so Identity’s validators get a TimeProvider
+       
 
         return services;
     }

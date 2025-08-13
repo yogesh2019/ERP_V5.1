@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using ERP_V5_Application.Common.Identity;
 
 namespace ERP_V5_Infrastructure.Identity;
 
-public class ApplicationUser : IdentityUser<Guid>
+public class ApplicationRole : IdentityRole<Guid>, IApplicationRole
 {
-    public string? FullName { get; set; }
 }

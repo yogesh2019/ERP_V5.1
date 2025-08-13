@@ -1,3 +1,4 @@
+using ERP_V5_Application.Authentication.Commands.RegisterUser;
 using ERP_V5_Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,6 +10,10 @@ builder.Services.AddSwaggerGen();
 
 // Infrastructure (DbContext + Identity)
 builder.Services.AddInfrastructure(builder.Configuration);
+builder.Services.AddMediatR(cfg =>
+{
+    cfg.RegisterServicesFromAssemblyContaining<RegisterUserCommand>(); // points to Application layer
+});
 
 // Application (MediatR etc.) will be added in Step 2
 // builder.Services.AddApplication(...);
