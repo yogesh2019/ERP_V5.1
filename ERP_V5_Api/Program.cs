@@ -1,5 +1,8 @@
 using ERP_V5_Application.Authentication.Commands.RegisterUser;
 using ERP_V5_Infrastructure;
+using ERP_V5_Infrastructure.Identity;
+using ERP_V5_Infrastructure.Identity.Seed;
+using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,9 +21,16 @@ builder.Services.AddMediatR(cfg =>
 
 // Application (MediatR etc.) will be added in Step 2
 // builder.Services.AddApplication(...);
-
 var app = builder.Build();
 
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+
+    var userManager = services.GetRequiredService<UserManager<ApplicationUser>>();
+    var roleManger = services.GetRequiredService<RoleManager<ApplicationRole>>();
+    await IdentitySeeder.SeedAsync(userManager, roleManger);
+}
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
