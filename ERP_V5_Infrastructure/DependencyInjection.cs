@@ -18,6 +18,7 @@ public static class DependencyInjection
         var connectionString = config.GetConnectionString("DefaultConnection")
             ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
         services.AddSingleton<TimeProvider>(TimeProvider.System);
+
         services
             .AddIdentityCore<ApplicationUser>(options =>
             {
@@ -37,8 +38,6 @@ public static class DependencyInjection
         services.AddDbContext<AppDbContext>(options =>
             options.UseSqlServer(connectionString));
 
-        // ✅ Add this line so Identity’s validators get a TimeProvider
-       
 
         return services;
     }
