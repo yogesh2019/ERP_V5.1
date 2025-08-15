@@ -1,4 +1,5 @@
 ﻿using System;
+using ERP_V5_Domain.Products;
 using ERP_V5_Infrastructure.Identity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -10,6 +11,7 @@ public class AppDbContext : IdentityDbContext<ApplicationUser, ApplicationRole, 
 {
     public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
+    public DbSet<Product> Products => Set<Product>();
     protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);
@@ -23,7 +25,7 @@ public class AppDbContext : IdentityDbContext<ApplicationUser, ApplicationRole, 
         builder.Entity<IdentityRoleClaim<Guid>>().ToTable("RoleClaims");
         builder.Entity<IdentityUserToken<Guid>>().ToTable("UserTokens");
 
-        // TODO: add ERP aggregates later, e.g.:
-        // public DbSet<Customer> Customers => Set<Customer>();
+        // Apply all IEntityTypeConfiguration<T> in this assembly
+        builder.ApplyConfigurationsFromAssembly(typeof(AppDbContext).Assembly);
     }
 }

@@ -3,6 +3,8 @@ using ERP_V5.Application.Authentication;
 using ERP_V5_Application.Common.Interfaces;
 using ERP_V5_Infrastructure.Authentication;
 using ERP_V5_Infrastructure.Identity;
+using ERP_V5_Infrastructure.Persistance;
+using ERP_V5_Infrastructure.Persistance.Repositories;
 using ERP_V5_Infrastructure.Persistence;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -37,6 +39,8 @@ public static class DependencyInjection
         services.AddScoped<IJwtTokenGenerator, JwtTokenGenerator>();
         services.AddDbContext<AppDbContext>(options =>
             options.UseSqlServer(connectionString));
+        services.AddScoped<IProductRepository, ProductRepository>();
+        services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 
         return services;
