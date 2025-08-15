@@ -1,4 +1,5 @@
 using ERP_V5_Application.Authentication.Commands.RegisterUser;
+using ERP_V5_Application.Products.Commands.CreateProduct;
 using ERP_V5_Infrastructure;
 using ERP_V5_Infrastructure.Identity;
 using ERP_V5_Infrastructure.Identity.Seed;
@@ -15,8 +16,10 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddMediatR(cfg =>
 {
+
     cfg.RegisterServicesFromAssemblyContaining<RegisterUserCommand>();        // Application
     cfg.RegisterServicesFromAssemblyContaining<RegisterUserCommandHandler>(); // Infrastructure
+    cfg.RegisterServicesFromAssembly(typeof(CreateProductCommand).Assembly);
 });
 
 // Application (MediatR etc.) will be added in Step 2
