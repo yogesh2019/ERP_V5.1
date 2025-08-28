@@ -23,6 +23,7 @@ public class LoginUserCommandHandler : IRequestHandler<LoginUserCommand, AuthRes
     }
     public async Task<AuthResponse> Handle(LoginUserCommand request, CancellationToken cancellationToken)
     {
+
         var user = await _userManager.FindByEmailAsync(request.Email);
         if (user == null)
         {
