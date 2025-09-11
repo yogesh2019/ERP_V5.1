@@ -12,6 +12,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+
 // Infrastructure (DbContext + Identity)
 builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddMediatR(cfg =>
@@ -22,10 +23,15 @@ builder.Services.AddMediatR(cfg =>
     cfg.RegisterServicesFromAssembly(typeof(CreateProductCommand).Assembly);
 });
 
+
+
+
+
 // Application (MediatR etc.) will be added in Step 2
 // builder.Services.AddApplication(...);
 var app = builder.Build();
 
+#region SeedData
 using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
@@ -34,6 +40,8 @@ using (var scope = app.Services.CreateScope())
     var roleManger = services.GetRequiredService<RoleManager<ApplicationRole>>();
     await IdentitySeeder.SeedAsync(userManager, roleManger);
 }
+#endregion
+
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();

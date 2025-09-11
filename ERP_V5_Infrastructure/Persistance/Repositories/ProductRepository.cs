@@ -25,4 +25,14 @@ public sealed class ProductRepository : IProductRepository
     {
         return _db.Products.AsNoTracking().AnyAsync(p => p.Name == name, cancellationToken);
     }
+
+    public async Task<IReadOnlyList<Product>> GetAllAsync(CancellationToken cancellationToken = default)
+    {
+        return await _db.Products.AsNoTracking().ToListAsync(cancellationToken);
+    }
+
+    public Task<Product?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
+    {
+        throw new NotImplementedException();
+    }
 }
