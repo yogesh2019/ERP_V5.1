@@ -1,5 +1,6 @@
 ﻿using ERP_V5_Api.Contracts.Products;
 using ERP_V5_Application.Products.Commands.CreateProduct;
+using ERP_V5_Application.Products.Queries.GetProductById;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -17,23 +18,17 @@ public sealed class ProductsController(IMediator mediator) : ControllerBase
     {
         var result = await _mediator.Send(
             new CreateProductCommand(request.Name, request.StockQty, request.Price)
-            );
+            , ct);
         return CreatedAtAction(nameof(GetById), new { id = result.ProductId }, result);
     }
 
     [HttpGet("{id : guid}")]
-    public async Task<IActionResult> GetById(Guid id, [FromServices] ERP_V5_Infrastructure.Persistence.AppDbContext db, CancellationToken ct)
+    public async Task<IActionResult> GetById(Guid id, CancellationToken ct)
     {
-        var product = await db.Products.FindAsync([id], ct);
+        var product = await _mediator.Send(new GetProductByIdQuery(id), ct);
 
 
-        return product is null ? NotFound() : Ok(new
-        {
-            product.Id,
-            product.Name,
-            product.StockQty,
-            product.Price
-        });
+        return product is null ? NotFound() : Ok(product);
     }
 
 }
