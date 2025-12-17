@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.8.34408.163
+# Visual Studio Version 18
+VisualStudioVersion = 18.0.11222.15 d18.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ERP_V5_Api", "ERP_V5_Api\ERP_V5_Api.csproj", "{B6A4D1E3-64B2-4FAB-B94C-C5E51B88A383}"
 EndProject
@@ -16,6 +16,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{8BAA9095-4
 		ERP_HLD.txt = ERP_HLD.txt
 		Folders.txt = Folders.txt
 		HLD.md = HLD.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{18653AE1-09CC-4B07-9AC5-0871B52B7E55}"
+	ProjectSection(SolutionItems) = preProject
+		doc.txt = doc.txt
 	EndProjectSection
 EndProject
 Global
