@@ -8,7 +8,6 @@ namespace ERP_V5_Application.Common.Interfaces;
 
 public interface IUnitOfWork : IAsyncDisposable
 {
-    IProductRepository products { get; }
     Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
     Task BeginTransactionAsync(CancellationToken cancellationToken = default);
 

@@ -10,7 +10,7 @@ public class AppDbContextFactory : IDesignTimeDbContextFactory<AppDbContext>
     {
         // Prefer env var if provided; else fallback
         var conn = Environment.GetEnvironmentVariable("ERP_V5__DefaultConnection")
-                   ?? "Server=(localdb)\\MSSQLLocalDB;Database=ERP_V5;Integrated Security=True;MultipleActiveResultSets=true;Encrypt=False;TrustServerCertificate=True";
+                   ?? "Server=DESKTOP-UVSKIA8\\SQLEXPRESS03;Database=ERP_V5;Trusted_Connection=True;MultipleActiveResultSets=true";
 
         var options = new DbContextOptionsBuilder<AppDbContext>()
             .UseSqlServer(conn)

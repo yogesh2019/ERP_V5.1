@@ -1,5 +1,5 @@
 ﻿using ERP_V5_Api.Contracts.Products;
-using ERP_V5_Application.Products.Commands.CreateProduct;
+using ERP_V5_Application.Inventory.Products.Commands.CreateProduct;
 using ERP_V5_Application.Products.Queries.GetProductById;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;

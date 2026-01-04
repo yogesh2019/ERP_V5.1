@@ -1,4 +1,4 @@
-﻿using ERP_V5_Application.Products.Commands.CreateProduct;
+﻿using ERP_V5_Application.Inventory.Products.Commands.CreateProduct;
 using FluentValidation;
 using System;
 using System.Collections.Generic;

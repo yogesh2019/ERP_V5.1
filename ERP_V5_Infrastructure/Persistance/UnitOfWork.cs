@@ -15,14 +15,12 @@ namespace ERP_V5_Infrastructure.Persistance;
 public sealed class UnitOfWork : IUnitOfWork
 {
     private readonly AppDbContext _db;
-    private IProductRepository _productRepository;
     private IDbContextTransaction _dbContextTransaction;
     public UnitOfWork(AppDbContext db)
     {
         _db = db ?? throw new ArgumentNullException(nameof(db));
     }
 
-    public IProductRepository products => _productRepository ??= new ProductRepository(_db);
 
     public async Task BeginTransactionAsync(CancellationToken cancellationToken = default)
     {

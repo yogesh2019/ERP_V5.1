@@ -11,6 +11,7 @@
 		<Folder Include="Enums\" />
 		<Folder Include="Identity\" />
 		<Folder Include="Interfaces\" />
+		<Folder Include="Products\" />
 		<Folder Include="ValueObjects\" />
 	</ItemGroup>
 

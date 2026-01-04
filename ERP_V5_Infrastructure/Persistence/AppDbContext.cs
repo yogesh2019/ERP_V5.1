@@ -1,5 +1,7 @@
 ﻿using System;
-using ERP_V5_Domain.Products;
+using ERP_V5_Domain.Inventory.Categories;
+using ERP_V5_Domain.Inventory.Common;
+using ERP_V5_Domain.Inventory.Products;
 using ERP_V5_Infrastructure.Identity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -12,6 +14,8 @@ public class AppDbContext : IdentityDbContext<ApplicationUser, ApplicationRole, 
     public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
     public DbSet<Product> Products => Set<Product>();
+
+    public DbSet<Category> Categories => Set<Category>();
     protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);

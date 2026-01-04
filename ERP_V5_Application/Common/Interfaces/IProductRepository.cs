@@ -1,4 +1,5 @@
-﻿using ERP_V5_Domain.Products;
+﻿using ERP_V5_Domain.Inventory.Common;
+using ERP_V5_Domain.Inventory.Products;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,11 @@ public interface IProductRepository
     Task<Product?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default);
     Task<IReadOnlyList<Product>> GetAllAsync(CancellationToken cancellationToken = default);
     void Update(Product product);
-    void Remove(Product product);
+    void Remove(Product product); Task<IReadOnlyList<Product>> SearchAsync(
+        string? name,
+        Guid? categoryId,
+        int page,
+        int pageSize,
+        CancellationToken ct = default);
 
 }

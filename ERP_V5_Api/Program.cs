@@ -1,6 +1,6 @@
 using ERP_V5_Application.Authentication.Commands.RegisterUser;
 using ERP_V5_Application.Behaviours;
-using ERP_V5_Application.Products.Commands.CreateProduct;
+using ERP_V5_Application.Inventory.Products.Commands.CreateProduct;
 using ERP_V5_Infrastructure;
 using ERP_V5_Infrastructure.Identity;
 using ERP_V5_Infrastructure.Identity.Seed;
