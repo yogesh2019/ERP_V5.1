@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
-import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { SHARED_IMPORTS } from '../../../../shared/shared.import';
+import { LoginResponse } from '../login-response.model';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-login',
@@ -10,12 +12,28 @@ import { SHARED_IMPORTS } from '../../../../shared/shared.import';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  loginForm;
+  loginForm: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService
+  ) {
     this.loginForm = this.fb.group({
       email: [''],
       password: ['']
+    });
+  }
+
+  onSubmit(): void {
+    if (this.loginForm.invalid) return;
+
+    this.authService.login(this.loginForm.value).subscribe({
+      next: (res: LoginResponse) => {
+        sessionStorage.setItem('access_token', res.token);
+      },
+      error: () => {
+        // handle error later
+      }
     });
   }
 }

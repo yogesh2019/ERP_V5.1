@@ -2,6 +2,14 @@ import { Routes } from '@angular/router';
 import { MainLayoutComponent } from './core/layout/main-layout/main-layout.component';
 
 export const routes: Routes = [
+    // 🔓 Public routes
+    {
+        path: '',
+        loadChildren: () =>
+            import('./features/auth/auth.routes')
+                .then(m => m.AUTH_ROUTES)
+    },
+    // protected routes
     {
         path: '',
         component: MainLayoutComponent,
