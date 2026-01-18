@@ -1,8 +1,7 @@
-﻿using ERP_V5_Infrastructure.Persistence;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 
-namespace ERP_V5_Infrastructure.Persistence;
+namespace ERP_V5_Infrastructure.Persistance;
 
 public class AppDbContextFactory : IDesignTimeDbContextFactory<AppDbContext>
 {

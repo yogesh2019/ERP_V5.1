@@ -1,0 +1,15 @@
+.layout-container {
+  height: 100vh;
+}
+
+.sidenav {
+  width: 240px;
+}
+
+.content {
+  padding: 16px;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}

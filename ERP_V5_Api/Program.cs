@@ -18,6 +18,7 @@ builder.Services.AddSwaggerGen();
 
 // Infrastructure (DbContext + Identity)
 builder.Services.AddInfrastructure(builder.Configuration);
+
 builder.Services.AddMediatR(cfg =>
 {
 
@@ -25,7 +26,9 @@ builder.Services.AddMediatR(cfg =>
     cfg.RegisterServicesFromAssemblyContaining<RegisterUserCommandHandler>(); // Infrastructure
     cfg.RegisterServicesFromAssembly(typeof(CreateProductCommand).Assembly);
 });
+
 builder.Services.AddValidatorsFromAssembly(typeof(CreateProductCommand).Assembly);
+
 builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehaviour<,>));
 builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(LoggingBehaviour<,>));
 

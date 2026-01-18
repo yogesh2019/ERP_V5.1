@@ -1,7 +1,6 @@
 ﻿using ERP_V5_Application.Common.Interfaces;
 using ERP_V5_Domain.Inventory.Common;
 using ERP_V5_Domain.Inventory.Products;
-using ERP_V5_Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;

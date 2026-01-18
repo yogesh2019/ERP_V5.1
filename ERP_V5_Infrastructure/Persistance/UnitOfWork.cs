@@ -1,6 +1,5 @@
 ﻿using ERP_V5_Application.Common.Interfaces;
 using ERP_V5_Infrastructure.Persistance.Repositories;
-using ERP_V5_Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 using System;
