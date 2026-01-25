@@ -28,7 +28,7 @@ public sealed class ProductsController(IMediator mediator) : ControllerBase
         return Ok(result);
     }
 
-    [HttpPut("{id : guid}")]
+    [HttpPut("{id:guid}")]
     [Authorize(Roles = "Admin")]
     public async Task<IActionResult> Update(
         Guid id,
@@ -42,7 +42,7 @@ public sealed class ProductsController(IMediator mediator) : ControllerBase
 
     }
 
-    [HttpPost("{id : guid}/adjust-stock")]
+    [HttpPost("{id:guid}/adjust-stock")]
     [Authorize(Roles = "Warehouse")]
     public async Task<IActionResult> AdjustStock(
         Guid id,
@@ -55,7 +55,7 @@ public sealed class ProductsController(IMediator mediator) : ControllerBase
         return Ok(result);
     }
 
-    [HttpGet("{id : guid}")]
+    [HttpGet("{id:guid}")]
     public async Task<IActionResult> GetById(
         Guid id,
         CancellationToken cancellationToken)

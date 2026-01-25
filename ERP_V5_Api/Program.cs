@@ -18,17 +18,23 @@ builder.Services.AddSwaggerGen();
 
 // Infrastructure (DbContext + Identity)
 builder.Services.AddInfrastructure(builder.Configuration);
-
-builder.Services.AddMediatR(cfg =>
+builder.Services.AddMediatR(
+    typeof(ERP_V5_Application.AssemblyMarker).Assembly,
+    typeof(ERP_V5_Infrastructure.AssemblyMarker).Assembly
+);
+builder.Services.AddCors(options =>
 {
-
-    cfg.RegisterServicesFromAssemblyContaining<RegisterUserCommand>();        // Application
-    cfg.RegisterServicesFromAssemblyContaining<RegisterUserCommandHandler>(); // Infrastructure
-    cfg.RegisterServicesFromAssembly(typeof(CreateProductCommand).Assembly);
+    options.AddPolicy("AllowAngular",
+        policy =>
+        {
+            policy
+                .WithOrigins("http://localhost:4200")
+                .AllowAnyHeader()
+                .AllowAnyMethod();
+        });
 });
-
 builder.Services.AddValidatorsFromAssembly(typeof(CreateProductCommand).Assembly);
-
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehaviour<,>));
 builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(LoggingBehaviour<,>));
 
@@ -53,6 +59,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+app.UseRouting();
+app.UseCors("AllowAngular");
 
 // JWT middleware comes in Step 2
 app.UseHttpsRedirection();

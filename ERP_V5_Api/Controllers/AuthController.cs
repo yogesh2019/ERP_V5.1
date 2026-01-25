@@ -30,6 +30,6 @@ public class AuthController : ControllerBase
     public async Task<IActionResult> Login(LoginUserCommand command)
     {
         AuthResponse response = await _mediator.Send(command);
-        return Ok(Response);
+        return Ok(response);
     }
 }
