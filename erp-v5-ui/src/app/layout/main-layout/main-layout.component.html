@@ -1,3 +1,9 @@
 <h1>ERP V5</h1>
-<hr />
-<router-outlet></router-outlet>
+<div style="display: flex">
+  <aside style="width: 200px">
+    <app-sidebar></app-sidebar>
+  </aside>
+  <main style="margin-left: 20px">
+    <router-outlet></router-outlet>
+  </main>
+</div>
