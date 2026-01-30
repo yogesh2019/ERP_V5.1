@@ -4,6 +4,7 @@ import { CommonModule } from "@angular/common";
 import { ProductsRoutingModule } from "./product-routing.module";
 import { ProductFacade } from "./facades/product.facade";
 import { FormsModule } from "@angular/forms";
+import { ProductService } from "./services/product.service";
 
 @NgModule({
     declarations: [
@@ -15,7 +16,8 @@ import { FormsModule } from "@angular/forms";
         ProductsRoutingModule
     ],
     providers: [
-        ProductFacade
+        ProductFacade,
+        ProductService
     ]
 })
 export class ProductModule {
