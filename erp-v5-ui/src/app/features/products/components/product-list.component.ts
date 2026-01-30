@@ -1,5 +1,7 @@
 import { Component } from "@angular/core";
 import { ProductFacade } from "../facades/product.facade";
+import { Observable } from "rxjs";
+import { Product } from "../product.model";
 
 @Component(
     {
@@ -8,8 +10,8 @@ import { ProductFacade } from "../facades/product.facade";
     }
 )
 export class ProductListComponent {
-    title$ = this.facade.title$;
+    product$: Observable<Product[]>
     constructor(private facade: ProductFacade) {
-
+        this.product$ = this.facade.product$;
     }
 }

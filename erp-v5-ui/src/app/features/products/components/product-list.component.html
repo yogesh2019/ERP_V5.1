@@ -1,2 +1,6 @@
-<h2>{{ title$ | async }}</h2>
-<p>Products feature loaded successfully</p>
+<h2>Products</h2>
+<ul>
+  <li *ngFor="let product of product$ | async">
+    {{ product.name }}
+  </li>
+</ul>
