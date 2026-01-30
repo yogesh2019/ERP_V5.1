@@ -5,7 +5,15 @@ import { MainLayoutComponent } from './layout/main-layout/main-layout.component'
 const routes: Routes = [
   {
     path: '',
-    component: MainLayoutComponent
+    component: MainLayoutComponent,
+    children: [
+      {
+        path: 'products',
+        loadChildren: () => import('./features/products/product.module').then(
+          m => m.ProductModule
+        )
+      }
+    ]
   }
 ];
 
