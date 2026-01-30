@@ -10,8 +10,17 @@ import { Product } from "../product.model";
     }
 )
 export class ProductListComponent {
-    product$: Observable<Product[]>
+    product$ = this.facade.product$;
+    loading$ = this.facade.loading$;
+    error$ = this.facade.error$;
+    newProductName = '';
     constructor(private facade: ProductFacade) {
-        this.product$ = this.facade.product$;
+    }
+    add(): void {
+        if (!this.newProductName.trim()) {
+            return;
+        }
+        this.facade.addProduct(this.newProductName);
+        this.newProductName = '';
     }
 }
