@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { BehaviorSubject } from "rxjs";
+import { BehaviorSubject, catchError, EMPTY, finalize, tap } from "rxjs";
 import { Product } from "../product.model";
 import { ProductService } from "../services/product.service";
 import { nextTick } from "process";
@@ -20,35 +20,38 @@ export class ProductFacade {
         this.loadingSubject.next(true);
         this.errorSubject.next(null);
 
-        this.service.getProducts().subscribe(
-            {
-                next: product => {
-                    this.productsSubject.next(product);
-                    this.loadingSubject.next(false);
-                },
-                error: err => {
-                    this.errorSubject.next(err.message);
-                    this.loadingSubject.next(false);
+        this.service.getProducts().pipe(
+            tap(
+                products => {
+                    this.productsSubject.next(products);
                 }
-            }
+            ),
+            catchError(err => { this.errorSubject.next(err.message); return EMPTY }),
+            finalize(() => this.loadingSubject.next(false))
+        ).subscribe(
+
         );
     }
     addProduct(name: string): void {
         this.loadingSubject.next(true);
         this.errorSubject.next(null);
 
-        this.service.addProducts(name).subscribe({
-            next: product => {
-                this.productsSubject.next([
-                    ...this.productsSubject.value,
-                    product
-                ]);
-                this.loadingSubject.next(false);
-            },
-            error: err => {
+        this.service.addProducts(name).pipe(
+            tap(
+                product => {
+                    this.productsSubject.next([
+                        ...this.productsSubject.value,
+                        product
+                    ])
+                }
+            ),
+            catchError(err => {
                 this.errorSubject.next(err.message);
-                this.loadingSubject.next(false);
-            }
+                return EMPTY;
+            }),
+            finalize(() => this.loadingSubject.next(false))
+        ).subscribe({
+
         })
     }
 }
